@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:promracing/services/auth.dart';
+import 'package:promracing/signin.dart';
 import 'package:promracing/theme.dart';
 import 'package:promracing/cardlist.dart';
 
+import 'package:promracing/wrapper.dart';
 
-class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
-  static const String routeName = "/Profile";
-  @override
-  // ignore: no_logic_in_create_state
-  _ProfileState createState() => _ProfileState();
-  
-  
-}
 
-class _ProfileState extends State<Profile> {
-  final AuthService _auth = AuthService();
+
+
+
+class Profile extends StatelessWidget {
+   Profile({Key? key}) : super(key: key);
+ final AuthService _auth = AuthService();
+  static const  String routeName= '/Profile' ;
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +22,16 @@ class _ProfileState extends State<Profile> {
     return
       Scaffold(
                     backgroundColor: Colors.white,
-                    body: Center( child: ElevatedButton(
+                    appBar: AppBar(actions: <Widget> [
+                       ElevatedButton(
                       child: Text("sign out"), 
                       onPressed: () async{
                         await _auth.signOut();
-
+                      Navigator.of(context).pushReplacement( MaterialPageRoute(builder: (context)=> SignIn()));
                       },)
-                    )
+                    ]),
+                    
+                    
                   ) ;
   }
 }

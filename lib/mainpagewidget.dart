@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:promracing/services/auth.dart';
 import 'package:promracing/theme.dart';
 import 'package:promracing/cardlist.dart';
 
@@ -14,6 +15,7 @@ class MainPageWidget extends StatefulWidget {
 }
 
 class _MainPageWidgetState extends State<MainPageWidget> {
+ final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                     backgroundColor: Colors.white,
                     body: Column(
      
-                        children: wrapper(context, cards1()),
+                        children: wrapper(context, cards1(), _auth),
                         )
                   ) ;
   }

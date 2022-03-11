@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:promracing/services/auth.dart';
 import 'dart:math';
 import 'package:promracing/theme.dart';
 import 'package:promracing/logo.dart';
@@ -24,10 +25,12 @@ class Quizzes extends StatefulWidget {
 
 
  class _Quizzes extends State<Quizzes> {
+ final AuthService _auth = AuthService();
 
       @override
 
     Widget build(BuildContext context) {
+      
     return 
      Container(
          decoration: const BoxDecoration(
@@ -45,7 +48,7 @@ class Quizzes extends StatefulWidget {
       children: [
        Container(
           
-            child:  logo(context),),
+            child:  logo(context, _auth),),
        const SizedBox(
    height:10.0,),
        SizedBox(

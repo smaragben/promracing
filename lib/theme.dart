@@ -20,11 +20,11 @@ import 'package:promracing/mainpagewidget.dart';
 
 
    
-wrapper(context, main){
+wrapper(context, main, _auth){
    return [
        Container(
            padding:  const EdgeInsets.only(top:0.0),
-            child:  logo(context),),
+            child:  logo(context, _auth),),
        const SizedBox(
    height:10.0,),
        SizedBox(

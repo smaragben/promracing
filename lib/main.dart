@@ -1,4 +1,5 @@
 import 'package:promracing/profile.dart';
+import 'package:promracing/signin.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -22,8 +23,9 @@ class MyApp extends StatelessWidget {
    var routes = <String, WidgetBuilder>{
      MainPageWidget.routeName: (BuildContext context) => const MainPageWidget() ,
      Quizzes.routeName: (BuildContext context) => const Quizzes(),
-          Profile.routeName: (BuildContext context) => const Profile(),
-
+          Profile.routeName: (BuildContext context) =>  Profile(),
+    SignIn.routeName: (BuildContext context) => SignIn(),
+    Wrapper.routeName:  (BuildContext context) => Wrapper(),
    };
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Roboto'),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 
-logo(context) {
+logo(context, _auth) {
 
   return Container(
-    decoration: BoxDecoration(  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40), bottomRight: Radius.circular(40) ),
+    decoration: BoxDecoration(  boxShadow:[BoxShadow(color: Colors.grey, spreadRadius: 5, blurRadius: 7)], borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40), bottomRight: Radius.circular(40) ),
       color: Color.fromARGB(234, 71, 59, 59),
 
 ),
@@ -19,15 +19,12 @@ logo(context) {
         alignment: Alignment.centerLeft, 
         child: Row(children: [
           Image.asset(
-            'assets/Rectangle2.png', 
-            width: 40,
-            height: 40,                                                            
+            'assets/prom.png', 
+            width: 135,
+            height: 30,                                                            
             fit: BoxFit.fill),
-                Image.asset(
-            'assets/newlogo.png', 
-            width: 100,
-            height: 40,                                                            
-            fit: BoxFit.fill),
+               
+            
         ],
         ) 
         ,) ,

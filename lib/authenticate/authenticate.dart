@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:promracing/signin.dart';
 
-class Authenticate  extends StatefulWidget {
-  const Authenticate ({ Key? key }) : super(key: key);
+
+
+
+
+class Authenticate extends StatelessWidget {
+   Authenticate({ Key? key }) : super(key: key);
+     static const  String routeName= '/Authenticate' ;
 
   @override
-  _AuthenticateState createState() => _AuthenticateState();
-}
-
-class _AuthenticateState extends State<Authenticate > {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: SignIn(),
-    );
+ Widget build(BuildContext context) {
+    
+    return
+      Scaffold(
+                    backgroundColor: Colors.white,
+                    body: SignIn()
+                  ) ;
   }
-}
+  }

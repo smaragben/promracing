@@ -9,6 +9,7 @@ class AuthService{
 
  Stream<appUser?> get user {
    print(createuser);
+         print("hhhhh");
    return _auth.authStateChanges().map(createuser);
  }
 
@@ -27,11 +28,12 @@ class AuthService{
   Future signOut() async {
     try{
       print("hr");
-      return await _auth.signOut();
+      await _auth.signOut();
+      return ;
     }
     catch(e){
       print(e.toString());
-      return null;
+      return ;
     }
   }
 
