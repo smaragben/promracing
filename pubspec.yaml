@@ -36,8 +36,11 @@ dependencies:
   cupertino_icons: ^1.0.4
   firebase_core: ^1.12.0
   firebase_database: ^9.0.7
+  provider: ^6.0.2
   cloud_firestore: ^1.0.1
   firebase_storage: ^10.2.9
+  firebase_auth: ^3.3.10
+  firebase_auth_web: ^3.3.9
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -73,6 +76,9 @@ flutter:
     - assets/Rectangle8.png
     - assets/Rectangle2.png   
     - assets/profilepic.png
+    - assets/redrect.png
+    - assets/keyboard_arrow_right.png
+    - assets/newlogo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
