@@ -1,19 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:promracing/services/auth.dart';
 import 'package:promracing/theme.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'dart:math';
-import 'package:promracing/theme.dart';
-import 'package:promracing/logo.dart';
-import 'package:promracing/buttons.dart';
-import 'package:promracing/cardlist.dart';
-
-import 'package:promracing/mainpagewidget.dart';
 
 class PhotosWidget extends StatefulWidget {
   const PhotosWidget({Key? key}) : super(key: key);
