@@ -51,6 +51,7 @@ _button(text, index, context) {
           onLongPress: () {
             if (index == 3) Navigator.pushNamed(context, '/Quizzes');
             if (index == 5) Navigator.pushNamed(context, '/Photos');
+            if (index == 7) Navigator.pushNamed(context, '/PromMembers');
           },
           icon: Padding(
               padding: const EdgeInsets.all(0),
