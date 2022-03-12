@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:promracing/loading.dart';
 import 'package:promracing/mainpagewidget.dart';
-import 'package:promracing/register.dart';
 import 'package:promracing/services/auth.dart';
-import 'package:promracing/wrapper.dart';
+import 'package:promracing/signin.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:developer';
 
-class SignIn extends StatefulWidget {
-  const SignIn({ Key? key }) : super(key: key);
-  static const  String routeName= '/Signin' ;
+class Register extends StatefulWidget {
+  const Register({ Key? key }) : super(key: key);
+  static const String routeName = '/Register';
 
   @override
-  _SignInState createState() => _SignInState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
+  String password = "";
+  String username = "";
+
+  String email= "";
   final AuthService _auth = AuthService();
-  String email = '';
-  String password = '';
-    final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   String error ='';
-  bool loading = false;
   @override
   Widget build(BuildContext context) {
-    return loading ? Loading(50.0, Color.fromARGB(234, 71, 59, 59)) : Scaffold(
-      resizeToAvoidBottomInset:false,
+    return Scaffold(
+            resizeToAvoidBottomInset:false,
+
                     backgroundColor:  Color.fromARGB(234, 71, 59, 59),
 
                     body: Column(
@@ -39,11 +40,34 @@ class _SignInState extends State<SignIn> {
                            Padding(
                              padding: EdgeInsets.fromLTRB(35.0,0,35.0,0),
                               child:       Form(
-                             key: _formKey,
-                            child: 
-                            Column(
+                                key: _formKey,
+                            child: Column(
                               children: [
                                 TextFormField(
+                                  textAlign: TextAlign.center,
+                                  cursorColor: Colors.grey,
+                                  decoration: const InputDecoration(
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                                    labelStyle: TextStyle(color: Colors.grey, fontSize: 15.0, fontWeight: FontWeight.normal,),
+                                    focusColor: Colors.red,
+                                   border: OutlineInputBorder(   borderRadius : BorderRadius.all(Radius.circular(30.0)),
+borderSide: BorderSide(color: Colors.black, width: 5.0)),
+                                    focusedBorder: OutlineInputBorder(borderRadius : BorderRadius.all(Radius.circular(30.0)),
+borderSide: BorderSide(color: Colors.red, width: 1.0)),
+                                  labelText: 'Username...'
+                                  ),
+                                  style: TextStyle(color: Colors.white ),
+                                  onChanged: (val){
+                                    setState(() {
+                                      username = val;
+                                    });
+                                  },),
+                                                                    SizedBox(height:MediaQuery.of(context).size.height/30  ,),
+
+                                TextFormField(
+                                  textAlign: TextAlign.center,
                                   cursorColor: Colors.grey,
                                   decoration: const InputDecoration(
                                     fillColor: Colors.white,
@@ -57,17 +81,16 @@ borderSide: BorderSide(color: Colors.black, width: 5.0)),
 borderSide: BorderSide(color: Colors.red, width: 1.0)),
                                   labelText: 'Email...'
                                   ),
-                                  style: TextStyle(color: Colors.black ),
-                                   onChanged: (val){
+                                  style: TextStyle(color: Colors.white ),
+                                  onChanged: (val){
                                     setState(() {
                                       email = val;
                                     });
                                   },),
                                   SizedBox(height:MediaQuery.of(context).size.height/30  ,),
                                 TextFormField(
-                                  cursorColor: Colors.grey,
-
                                    obscureText: true,
+                                  cursorColor: Colors.grey,
                                   decoration: const InputDecoration(
                                     fillColor: Colors.white,
                                     filled: true,
@@ -80,16 +103,15 @@ borderSide: BorderSide(color: Colors.black, width: 5.0)),
 borderSide: BorderSide(color: Colors.red, width: 1.0)),
                                   labelText: 'Password...'
                                   ),
-                                  style: TextStyle(color: Colors.black ),
+                                  style: TextStyle(color: Colors.white ),
                                   onChanged: (val){
-                                      setState(() {
-                                        password = val;
-                                      });
+                                    setState(() {
+                                      password = val;
+                                    });
                                   },),
-                                
                               ],)) ,),
-                                                  SizedBox(height: MediaQuery.of(context).size.height/20 ),
-
+                    
+                              SizedBox(height: MediaQuery.of(context).size.height/20 ),
                           Center(
                             child: ElevatedButton(
                               
@@ -98,16 +120,13 @@ borderSide: BorderSide(color: Colors.red, width: 1.0)),
                               RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0))),
                               ),
  
-                              child: Text("Είσοδος"), 
-                              onPressed:  () async {
+                              child: Text("Εγγραφή"), 
+                              onPressed: () async {
                                      if(_formKey.currentState!.validate()){
-                                       loading = true;
-                                       dynamic result = await _auth.signin(email, password);
+                                       dynamic result = await _auth.register(email, password, username);
                                        if(result == null){
                                          setState(() {
-                                           error = "Λάθος email ή password";
-                                         loading = false;
-
+                                           error = "Εισάγετε ορθό email";
                                          });
                                        }
                                        else{
@@ -116,52 +135,33 @@ borderSide: BorderSide(color: Colors.red, width: 1.0)),
 
                                        }
                                      }
-                              }
-                              
-                              ),
-                              ),
-                              Center (
-                                child:  ElevatedButton(
-                              
-                             style: ButtonStyle(minimumSize: MaterialStateProperty.all(Size(5*MediaQuery.of(context).size.width/6, 40.0)), backgroundColor: MaterialStateProperty.all(Colors.red), shape:  MaterialStateProperty.all<RoundedRectangleBorder>(
 
-                              RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0))),
+                              },),
                               ),
-                              child: Text("Είσοδος χωρίς λογαριασμό"), 
-                              onPressed: () async {
-                                loading = true;
-                                      dynamic user = await _auth.signinanon();
-                                      if(user == null){
-                                        print("error signing in");
-                                        loading = false;
-                                      }
-                                      else{
-                                                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> MainPageWidget()));
-                                        print("user signed in");
-        }
-                              },),),
-                              Center(child:   Row(
+                               Center(child:   Row(
                                 mainAxisSize: MainAxisSize.min, children: [
-                                Text("Αν δεν έχετε λογαριασμό", style: const TextStyle(fontSize: 10, color: Colors.white, )),
+                                Text("Αν έχετε λογαριασμό", style: const TextStyle(fontSize: 10, color: Colors.white, )),
                                 TextButton(
-                                  child: Text(" Εγγραφείτε εδώ", style: const TextStyle(decoration: TextDecoration.underline, fontSize: 10, color: Colors.white,  )),
+                                  child: Text(" Είσοδος εδώ", style: const TextStyle(decoration: TextDecoration.underline, fontSize: 10, color: Colors.white,  )),
                                   onPressed: (){
-                                    Navigator.pushReplacement(context, PageRouteBuilder(pageBuilder: (context, animation1, animation2)=> Register(), transitionDuration: Duration.zero, reverseTransitionDuration: Duration.zero));
+                                    Navigator.pushReplacement(context, PageRouteBuilder(pageBuilder: (context, animation1, animation2)=> SignIn(), transitionDuration: Duration.zero, reverseTransitionDuration: Duration.zero));
 
                                   },),
-                                  
-
-
-                              ],),),
-                               SizedBox(height: MediaQuery.of(context).size.height/200 ),
+                         SizedBox(height: MediaQuery.of(context).size.height/20 ),
                          Text(
                            error,
                            style: TextStyle(color: Colors.red, fontSize: 14.0)
                          ),
 
+
+
+                              ],),)
+                             
+
+                             
                             
                         ],
                         )
                   ) ;
-  } 
+  }
 }
