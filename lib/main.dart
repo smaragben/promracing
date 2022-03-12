@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
       SignIn.routeName: (BuildContext context) => SignIn(),
       Wrapper.routeName: (BuildContext context) => Wrapper(),
       PhotosWidget.routeName: (BuildContext context) => PhotosWidget(),
-      PromMemebrsWidget.routeName: (BuildContext context) =>
-          PromMemebrsWidget(),
+      PromMembersWidget.routeName: (BuildContext context) =>
+          PromMembersWidget(),
     };
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Roboto'),
