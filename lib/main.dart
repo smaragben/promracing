@@ -9,6 +9,7 @@ import 'package:promracing/services/auth.dart';
 import 'package:promracing/wrapper.dart';
 import 'package:promracing/user.dart';
 import 'package:promracing/photos.dart';
+import 'package:promracing/prom.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +30,8 @@ class MyApp extends StatelessWidget {
       SignIn.routeName: (BuildContext context) => SignIn(),
       Wrapper.routeName: (BuildContext context) => Wrapper(),
       PhotosWidget.routeName: (BuildContext context) => PhotosWidget(),
+      PromMemebrsWidget.routeName: (BuildContext context) =>
+          PromMemebrsWidget(),
     };
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Roboto'),
