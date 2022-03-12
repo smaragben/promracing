@@ -3,15 +3,15 @@ import 'package:promracing/services/auth.dart';
 import 'package:promracing/theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class PhotosWidget extends StatefulWidget {
-  const PhotosWidget({Key? key}) : super(key: key);
-  static const String routeName = "/Photos";
+class PromMemebrsWidget extends StatefulWidget {
+  const PromMemebrsWidget({Key? key}) : super(key: key);
+  static const String routeName = "/PromMembers";
   @override
   // ignore: no_logic_in_create_state
-  State<StatefulWidget> createState() => _PhotosState();
+  State<StatefulWidget> createState() => _PromMembersState();
 }
 
-class _PhotosState extends State<PhotosWidget> {
+class _PromMembersState extends State<PromMemebrsWidget> {
   final AuthService _auth = AuthService();
 
   @override
@@ -19,14 +19,14 @@ class _PhotosState extends State<PhotosWidget> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: Column(
-          children: wrapper(context, images1(), _auth),
+          children: wrapper(context, members(), _auth),
         ));
   }
 }
 
-images1() {
+members() {
   List<Map<dynamic, dynamic>> lists = [];
-  final dbRef = FirebaseFirestore.instance.collection("photos");
+  final dbRef = FirebaseFirestore.instance.collection("promMembers");
 
   return StreamBuilder<QuerySnapshot>(
       stream: dbRef.snapshots(),
@@ -59,7 +59,7 @@ Widget _buildImage(QuerySnapshot? snapshot) {
                       type: MaterialType.transparency,
                       child: InkWell(
                         child: Ink.image(
-                          image: NetworkImage(doc!["image"]),
+                          image: NetworkImage(doc!["member"]),
                           padding: const EdgeInsets.all(0.0),
                         ),
                         onTap: () {},
@@ -75,7 +75,7 @@ Widget _buildImage(QuerySnapshot? snapshot) {
                   height: 25,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Colors.red,
+                    color: Colors.orange,
                   ),
                   child: Text(doc["title"]),
                 ),
