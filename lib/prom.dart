@@ -75,9 +75,23 @@ Widget _buildImage(QuerySnapshot? snapshot) {
                   height: 25,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Colors.yellow,
+                  ),
+                  child: Text(doc["name"]),
+                ),
+              ),
+              Positioned(
+                top: 10,
+                left: 10,
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 150,
+                  height: 25,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
                     color: Colors.orange,
                   ),
-                  child: Text(doc["title"]),
+                  child: Text(doc["job"]),
                 ),
               )
             ],
