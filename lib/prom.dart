@@ -59,7 +59,7 @@ Widget _buildImage(QuerySnapshot? snapshot) {
                       type: MaterialType.transparency,
                       child: InkWell(
                         child: Ink.image(
-                          image: NetworkImage(doc!["member"]),
+                          image: NetworkImage(doc!["photo"]),
                           padding: const EdgeInsets.all(0.0),
                         ),
                         onTap: () {},
