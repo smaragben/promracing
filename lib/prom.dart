@@ -50,23 +50,6 @@ Widget _buildImage(QuerySnapshot? snapshot) {
           child: Stack(
             children: <Widget>[
               Positioned(
-                left: 30,
-                top: 30,
-                child: Container(
-                    height: 200,
-                    width: 290,
-                    child: Material(
-                      type: MaterialType.transparency,
-                      child: InkWell(
-                        child: Ink.image(
-                          image: NetworkImage(doc!["photo"]),
-                          padding: const EdgeInsets.all(0.0),
-                        ),
-                        onTap: () {},
-                      ),
-                    )),
-              ),
-              Positioned(
                 top: 20,
                 left: 20,
                 child: Container(
@@ -77,7 +60,7 @@ Widget _buildImage(QuerySnapshot? snapshot) {
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                     color: Colors.yellow,
                   ),
-                  child: Text(doc["name"]),
+                  child: Text(doc!["name"]),
                 ),
               ),
               Positioned(
@@ -93,6 +76,23 @@ Widget _buildImage(QuerySnapshot? snapshot) {
                   ),
                   child: Text(doc["job"]),
                 ),
+              ),
+              Positioned(
+                left: 30,
+                top: 30,
+                child: Container(
+                    height: 200,
+                    width: 290,
+                    child: Material(
+                      type: MaterialType.transparency,
+                      child: InkWell(
+                        child: Ink.image(
+                          image: NetworkImage(doc["photo"]),
+                          padding: const EdgeInsets.all(0.0),
+                        ),
+                        onTap: () {},
+                      ),
+                    )),
               )
             ],
           ),
