@@ -20,7 +20,7 @@ import 'package:promracing/mainpagewidget.dart';
 
 
    
-wrapper(context, main, _auth){
+wrapper(context, main, _auth, curindex){
    return [
        Container(
            padding:  const EdgeInsets.only(top:0.0),
@@ -32,7 +32,7 @@ wrapper(context, main, _auth){
               child: ListView(
                 clipBehavior: Clip.none,
                 scrollDirection: Axis.horizontal,
-                children: buttons(context),
+                children: buttons(context, curindex),
               ), 
             ),
        const SizedBox(
@@ -41,8 +41,8 @@ wrapper(context, main, _auth){
    const SizedBox(
    height:5.0,),
               SizedBox(
-              width: 340.0,
-              height: 600.0,
+              width:MediaQuery.of(context).size.width,
+              height:MediaQuery.of(context).size.height -10.0 - 5.0 - 40.0 - 10.0-140.0,
               
               child: main
               ), 

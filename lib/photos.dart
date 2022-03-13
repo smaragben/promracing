@@ -19,7 +19,7 @@ class _PhotosState extends State<PhotosWidget> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: Column(
-          children: wrapper(context, images1(), _auth),
+          children: wrapper(context, images1(), _auth, 0),
         ));
   }
 }
@@ -59,7 +59,7 @@ Widget _buildImage(QuerySnapshot? snapshot) {
                       type: MaterialType.transparency,
                       child: InkWell(
                         child: Ink.image(
-                          image: NetworkImage(doc!["image"]),
+                          image: NetworkImage(doc!["image1"]),
                           padding: const EdgeInsets.all(0.0),
                         ),
                         onTap: () {},

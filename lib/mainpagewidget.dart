@@ -22,10 +22,12 @@ class _MainPageWidgetState extends State<MainPageWidget> {
 
     return
       Scaffold(
+              resizeToAvoidBottomInset:false,
+
                     backgroundColor: Colors.white,
                     body: Column(
      
-                        children: wrapper(context, cards1(), _auth),
+                        children: wrapper(context, cards1(), _auth, 1),
                         )
                   ) ;
   }
