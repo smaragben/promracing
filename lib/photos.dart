@@ -3,15 +3,15 @@ import 'package:promracing/services/auth.dart';
 import 'package:promracing/theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class PhotosWidget extends StatefulWidget {
-  const PhotosWidget({Key? key}) : super(key: key);
+class Photos extends StatefulWidget {
+  const Photos({Key? key}) : super(key: key);
   static const String routeName = "/Photos";
   @override
   // ignore: no_logic_in_create_state
   State<StatefulWidget> createState() => _PhotosState();
 }
 
-class _PhotosState extends State<PhotosWidget> {
+class _PhotosState extends State<Photos> {
   final AuthService _auth = AuthService();
 
   @override

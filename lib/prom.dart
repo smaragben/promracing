@@ -3,15 +3,15 @@ import 'package:promracing/services/auth.dart';
 import 'package:promracing/theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class PromMembersWidget extends StatefulWidget {
-  const PromMembersWidget({Key? key}) : super(key: key);
+class PromMembers extends StatefulWidget {
+  const PromMembers({Key? key}) : super(key: key);
   static const String routeName = "/PromMembers";
   @override
   // ignore: no_logic_in_create_state
   State<StatefulWidget> createState() => _PromMembersState();
 }
 
-class _PromMembersState extends State<PromMembersWidget> {
+class _PromMembersState extends State<PromMembers> {
   final AuthService _auth = AuthService();
 
   @override
@@ -25,18 +25,35 @@ class _PromMembersState extends State<PromMembersWidget> {
 }
 
 members() {
-  List<Map<dynamic, dynamic>> lists = [];
-  final dbRef = FirebaseFirestore.instance.collection("promMembers");
+  List<CollectionReference> list = [];
+  var dbRef = FirebaseFirestore.instance.collection("promMembers");
+  list.add(dbRef);
+  dbRef = FirebaseFirestore.instance.collection("promMembersAerodynamics");
+  list.add(dbRef);
+  dbRef = FirebaseFirestore.instance.collection("promMembersElectronics");
+  list.add(dbRef);
+  dbRef = FirebaseFirestore.instance.collection("promMembersLogistics");
+  list.add(dbRef);
+  dbRef = FirebaseFirestore.instance
+      .collection("promMembersMarketingAndBusinessPlan");
+  list.add(dbRef);
+  dbRef = FirebaseFirestore.instance
+      .collection("promMembersMechanicalDesignAndManufacturing");
+  list.add(dbRef);
+  dbRef = FirebaseFirestore.instance.collection("promMembersVehicleDynamics");
+  list.add(dbRef);
 
-  return StreamBuilder<QuerySnapshot>(
-      stream: dbRef.snapshots(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return _buildImage(snapshot.data);
-        }
+  for (var i = 0; i < list.length; i++) {
+    return StreamBuilder<QuerySnapshot>(
+        stream: dbRef.snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return _buildImage(snapshot.data);
+          }
 
-        return const LinearProgressIndicator();
-      });
+          return const LinearProgressIndicator();
+        });
+  }
 }
 
 Widget _buildImage(QuerySnapshot? snapshot) {
