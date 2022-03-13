@@ -19,12 +19,12 @@ class _PhotosState extends State<PhotosWidget> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: Column(
-          children: wrapper(context, images1(), _auth, 5),
+          children: wrapper(context, images(), _auth, 5),
         ));
   }
 }
 
-images1() {
+images() {
   List<Map<dynamic, dynamic>> lists = [];
   final dbRef = FirebaseFirestore.instance.collection("photos");
 
@@ -59,7 +59,7 @@ Widget _buildImage(QuerySnapshot? snapshot) {
                       type: MaterialType.transparency,
                       child: InkWell(
                         child: Ink.image(
-                          image: NetworkImage(doc!["image1"]),
+                          image: NetworkImage(doc!["image"]),
                           padding: const EdgeInsets.all(0.0),
                         ),
                         onTap: () {},
