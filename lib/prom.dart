@@ -19,7 +19,7 @@ class _PromMembersState extends State<PromMembersWidget> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: Column(
-          children: wrapper(context, members(), _auth, 0),
+          children: wrapper(context, members(), _auth, 2),
         ));
   }
 }
