@@ -19,7 +19,7 @@ class _PhotosState extends State<PhotosWidget> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: Column(
-          children: wrapper(context, images1(), _auth, 0),
+          children: wrapper(context, images1(), _auth, 5),
         ));
   }
 }
