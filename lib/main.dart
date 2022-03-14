@@ -12,6 +12,7 @@ import 'package:promracing/services/auth.dart';
 import 'package:promracing/wrapper.dart';
 import 'package:promracing/user.dart';
 import 'package:promracing/prom.dart';
+import 'package:promracing/sponsors.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
       Photos.routeName: (BuildContext context) => const Photos(),
       Register.routeName: (BuildContext context) => const Register(),
       PromMembers.routeName: (BuildContext context) => const PromMembers(),
+      Sponsors.routeName: (BuildContext context) => const Sponsors()
     };
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Roboto'),

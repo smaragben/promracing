@@ -56,7 +56,7 @@ _button(text, index, context, curindex) {
             if (index == 3) Navigator.pushNamed(context, '/Rules');
             if (index == 4) Navigator.pushNamed(context, '/Quizzes');
             if (index == 5) Navigator.pushNamed(context, '/Photos');
-            if (index == 7) Navigator.pushNamed(context, '/Sponsors');
+            if (index == 6) Navigator.pushNamed(context, '/Sponsors');
           },
           icon: Padding(
               padding: const EdgeInsets.all(0),

@@ -8,10 +8,10 @@ class Sponsors extends StatefulWidget {
   static const String routeName = "/Sponsors";
   @override
   // ignore: no_logic_in_create_state
-  State<StatefulWidget> createState() => SponsorsState();
+  State<StatefulWidget> createState() => _SponsorsState();
 }
 
-class SponsorsState extends State<Sponsors> {
+class _SponsorsState extends State<Sponsors> {
   final AuthService _auth = AuthService();
 
   @override
@@ -19,7 +19,7 @@ class SponsorsState extends State<Sponsors> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: Column(
-          children: wrapper(context, sponsors(), _auth, 7),
+          children: wrapper(context, sponsors(), _auth, 6),
         ));
   }
 }
