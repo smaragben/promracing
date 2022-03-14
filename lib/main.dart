@@ -29,12 +29,12 @@ class MyApp extends StatelessWidget {
           const MainPageWidget(),
       Quizzes.routeName: (BuildContext context) => const Quizzes(),
       Profile.routeName: (BuildContext context) => Profile(),
-      SignIn.routeName: (BuildContext context) => SignIn(),
+      SignIn.routeName: (BuildContext context) => const SignIn(),
       Wrapper.routeName: (BuildContext context) => Wrapper(),
-      Result.routeName: (BuildContext context) => Result(),
-      Photos.routeName: (BuildContext context) => Photos(),
-      Register.routeName: (BuildContext context) => Register(),
-      PromMembers.routeName: (BuildContext context) => PromMembers(),
+      Result.routeName: (BuildContext context) => const Result(),
+      Photos.routeName: (BuildContext context) => const Photos(),
+      Register.routeName: (BuildContext context) => const Register(),
+      PromMembers.routeName: (BuildContext context) => const PromMembers(),
     };
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Roboto'),

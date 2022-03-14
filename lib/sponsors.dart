@@ -19,7 +19,7 @@ class SponsorsState extends State<Sponsors> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: Column(
-          children: wrapper(context, sponsors(), _auth, 2),
+          children: wrapper(context, sponsors(), _auth, 7),
         ));
   }
 }

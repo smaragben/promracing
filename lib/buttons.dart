@@ -51,9 +51,12 @@ _button(text, index, context, curindex) {
           ),
           onPressed: () {},
           onLongPress: () {
-            if (index == 3) Navigator.pushNamed(context, '/Quizzes');
             if (index == 1) Navigator.pushNamed(context, '/MainPage');
+            if (index == 2) Navigator.pushNamed(context, '/Prom');
+            if (index == 3) Navigator.pushNamed(context, '/Rules');
+            if (index == 4) Navigator.pushNamed(context, '/Quizzes');
             if (index == 5) Navigator.pushNamed(context, '/Photos');
+            if (index == 7) Navigator.pushNamed(context, '/Sponsors');
           },
           icon: Padding(
               padding: const EdgeInsets.all(0),
