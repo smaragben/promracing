@@ -3,15 +3,15 @@ import 'package:promracing/services/auth.dart';
 import 'package:promracing/theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class PromMembers extends StatefulWidget {
-  const PromMembers({Key? key}) : super(key: key);
+class Sponsors extends StatefulWidget {
+  const Sponsors({Key? key}) : super(key: key);
   static const String routeName = "/PromMembers";
   @override
   // ignore: no_logic_in_create_state
-  State<StatefulWidget> createState() => _PromMembersState();
+  State<StatefulWidget> createState() => _SponsorsState();
 }
 
-class _PromMembersState extends State<PromMembers> {
+class _SponsorsState extends State<Sponsors> {
   final AuthService _auth = AuthService();
 
   @override
@@ -26,23 +26,20 @@ class _PromMembersState extends State<PromMembers> {
 
 members() {
   List<CollectionReference> list = [];
-  var dbRef = FirebaseFirestore.instance.collection("promMembers");
+  var dbRef = FirebaseFirestore.instance.collection("supporters");
   list.add(dbRef);
-  dbRef = FirebaseFirestore.instance.collection("promMembersElectronics");
+  dbRef = FirebaseFirestore.instance.collection("mediaSponsorship");
   list.add(dbRef);
-  dbRef = FirebaseFirestore.instance.collection("promMembersAerodynamics");
+  dbRef = FirebaseFirestore.instance.collection("bronzeSponsors");
   list.add(dbRef);
-  dbRef = FirebaseFirestore.instance.collection("promMembersLogistics");
+  dbRef = FirebaseFirestore.instance.collection("silverSponsors");
   list.add(dbRef);
-  dbRef = FirebaseFirestore.instance
-      .collection("promMembersMarketingAndBusinessPlan");
+  dbRef = FirebaseFirestore.instance.collection("goldenSponsors");
   list.add(dbRef);
-  dbRef = FirebaseFirestore.instance
-      .collection("promMembersMechanicalDesignAndManufacturing");
+  dbRef = FirebaseFirestore.instance.collection("platinumSponsors");
   list.add(dbRef);
-  dbRef = FirebaseFirestore.instance.collection("promMembersVehicleDynamics");
-  list.add(dbRef);
-  for (var i = 0; i < list.length; i++) {
+
+  for (int i = 0; i < list.length; i++) {
     return StreamBuilder<QuerySnapshot>(
         stream: dbRef.snapshots(),
         builder: (context, snapshot) {
@@ -91,7 +88,7 @@ Widget _buildImage(QuerySnapshot? snapshot) {
                   height: 25,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Colors.yellow,
+                    color: Colors.blue,
                   ),
                   child: Text(doc["name"]),
                 ),
@@ -105,9 +102,9 @@ Widget _buildImage(QuerySnapshot? snapshot) {
                   height: 25,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Colors.orange,
+                    color: Colors.purple,
                   ),
-                  child: Text(doc["job"]),
+                  child: Text(doc["type"]),
                 ),
               )
             ],
