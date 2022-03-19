@@ -41,9 +41,9 @@ _button(text, index, context, curindex) {
               if (states.contains(MaterialState.pressed) ||
                   states.contains(MaterialState.hovered) ||
                   states.contains(MaterialState.focused) ||
-                  index == curindex)
+                  index == curindex) {
                 return 13;
-              else {
+              } else {
                 return 0;
               }
             }),
