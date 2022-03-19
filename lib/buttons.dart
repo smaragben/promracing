@@ -9,7 +9,8 @@ List<Widget> buttons(context, curindex) {
     Text('Rules', style: TextStyle(fontSize: 15)),
     Text('Photos', style: TextStyle(fontSize: 15)),
     Text('Sponsors', style: TextStyle(fontSize: 15)),
-    Text('ContactUs', style: TextStyle(fontSize: 15))
+    Text('ContactUs', style: TextStyle(fontSize: 15)),
+    Text('Quizzes', style: TextStyle(fontSize: 15))
   ];
   final List<Widget> _butt = [];
   const _space = SizedBox(width: 10);
@@ -42,9 +43,9 @@ _button(text, index, context, curindex) {
               if (states.contains(MaterialState.pressed) ||
                   states.contains(MaterialState.hovered) ||
                   states.contains(MaterialState.focused) ||
-                  index == curindex)
+                  index == curindex) {
                 return 13;
-              else {
+              } else {
                 return 0;
               }
             }),
