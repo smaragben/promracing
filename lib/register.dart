@@ -6,9 +6,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:developer';
 
 class Register extends StatefulWidget {
-  const Register({ Key? key }) : super(key: key);
+   Register({ Key? key, required this.a }) : super(key: key);
   static const String routeName = '/Register';
-
+AuthService a;
   @override
   State<Register> createState() => _RegisterState();
 }
@@ -18,7 +18,6 @@ class _RegisterState extends State<Register> {
   String username = "";
 
   String email= "";
-  final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   String error ='';
   @override
@@ -26,7 +25,7 @@ class _RegisterState extends State<Register> {
     return Scaffold(
             resizeToAvoidBottomInset:false,
 
-                    backgroundColor:  Color.fromARGB(234, 71, 59, 59),
+                    backgroundColor:  Color.fromARGB(234, 79, 79, 83),
 
                     body: Column(
      
@@ -58,7 +57,7 @@ borderSide: BorderSide(color: Colors.black, width: 5.0)),
 borderSide: BorderSide(color: Colors.red, width: 1.0)),
                                   labelText: 'Username...'
                                   ),
-                                  style: TextStyle(color: Colors.white ),
+                                  style: TextStyle(color: Colors.black ),
                                   onChanged: (val){
                                     setState(() {
                                       username = val;
@@ -81,7 +80,7 @@ borderSide: BorderSide(color: Colors.black, width: 5.0)),
 borderSide: BorderSide(color: Colors.red, width: 1.0)),
                                   labelText: 'Email...'
                                   ),
-                                  style: TextStyle(color: Colors.white ),
+                                  style: TextStyle(color: Colors.black ),
                                   onChanged: (val){
                                     setState(() {
                                       email = val;
@@ -103,7 +102,7 @@ borderSide: BorderSide(color: Colors.black, width: 5.0)),
 borderSide: BorderSide(color: Colors.red, width: 1.0)),
                                   labelText: 'Password...'
                                   ),
-                                  style: TextStyle(color: Colors.white ),
+                                  style: TextStyle(color: Colors.black ),
                                   onChanged: (val){
                                     setState(() {
                                       password = val;
@@ -123,39 +122,47 @@ borderSide: BorderSide(color: Colors.red, width: 1.0)),
                               child: Text("Εγγραφή"), 
                               onPressed: () async {
                                      if(_formKey.currentState!.validate()){
-                                       dynamic result = await _auth.register(email, password, username);
-                                       if(result == null){
+                                       dynamic result = await widget.a.register(email, password, username);
+                                       if(result == "[firebase_auth/weak-password] Password should be at least 6 characters"){
                                          setState(() {
-                                           error = "Εισάγετε ορθό email";
+                                           error = "Ο κωδικός πρέπει να έχει πάνω από 6 χρακτήρες";
+                                         });
+                                       }
+                                       else if(result ==  "[firebase_auth/email-already-in-use] The email address is already in use by another account."){
+                                          setState(() {
+                                           error = "Το email χρησιμοποιείται ήδη από άλλον λογαριασμό.";
+                                         });
+                                       }
+                                       else if(result is String){
+                                        setState(() {
+                                           error = result;
                                          });
                                        }
                                        else{
                                          log(result.uid);
-                                        Navigator.pushReplacement(context, PageRouteBuilder(pageBuilder: (context, animation1, animation2)=> MainPageWidget(), transitionDuration: Duration.zero, reverseTransitionDuration: Duration.zero));
+                                        Navigator.pushReplacement(context, PageRouteBuilder(pageBuilder: (context, animation1, animation2)=> MainPageWidget(a: widget.a), transitionDuration: Duration.zero, reverseTransitionDuration: Duration.zero));
 
                                        }
                                      }
 
                               },),
                               ),
+
                                Center(child:   Row(
                                 mainAxisSize: MainAxisSize.min, children: [
                                 Text("Αν έχετε λογαριασμό", style: const TextStyle(fontSize: 10, color: Colors.white, )),
                                 TextButton(
                                   child: Text(" Είσοδος εδώ", style: const TextStyle(decoration: TextDecoration.underline, fontSize: 10, color: Colors.white,  )),
                                   onPressed: (){
-                                    Navigator.pushReplacement(context, PageRouteBuilder(pageBuilder: (context, animation1, animation2)=> SignIn(), transitionDuration: Duration.zero, reverseTransitionDuration: Duration.zero));
+                                    Navigator.pushReplacement(context, PageRouteBuilder(pageBuilder: (context, animation1, animation2)=> SignIn(a: widget.a), transitionDuration: Duration.zero, reverseTransitionDuration: Duration.zero));
 
                                   },),
-                         SizedBox(height: MediaQuery.of(context).size.height/20 ),
-                         Text(
+                        
+ ],),),
+  Flexible(child: Text(
                            error,
                            style: TextStyle(color: Colors.red, fontSize: 14.0)
-                         ),
-
-
-
-                              ],),)
+                         ))
                              
 
                              

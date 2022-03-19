@@ -3,15 +3,15 @@ import 'package:promracing/services/auth.dart';
 import 'package:promracing/theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class PromMembersWidget extends StatefulWidget {
-  const PromMembersWidget({Key? key}) : super(key: key);
-  static const String routeName = "/PromMembers";
+class Sponsors extends StatefulWidget {
+  const Sponsors({Key? key}) : super(key: key);
+  static const String routeName = "/Sponsors";
   @override
   // ignore: no_logic_in_create_state
-  State<StatefulWidget> createState() => _PromMembersState();
+  State<StatefulWidget> createState() => _SponsorsState();
 }
 
-class _PromMembersState extends State<PromMembersWidget> {
+class _SponsorsState extends State<Sponsors> {
   final AuthService _auth = AuthService();
 
   @override
@@ -19,24 +19,37 @@ class _PromMembersState extends State<PromMembersWidget> {
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 204, 204, 211),
         body: Column(
-          children: wrapper(context, members(), _auth, 2),
+          children: wrapper(context, members(), _auth, 6),
         ));
   }
 }
 
 members() {
-  List<Map<dynamic, dynamic>> lists = [];
-  final dbRef = FirebaseFirestore.instance.collection("promMembers");
+  List<CollectionReference> list = [];
+  var dbRef = FirebaseFirestore.instance.collection("supporters");
+  list.add(dbRef);
+  dbRef = FirebaseFirestore.instance.collection("mediaSponsorship");
+  list.add(dbRef);
+  dbRef = FirebaseFirestore.instance.collection("bronzeSponsors");
+  list.add(dbRef);
+  dbRef = FirebaseFirestore.instance.collection("silverSponsors");
+  list.add(dbRef);
+  dbRef = FirebaseFirestore.instance.collection("goldenSponsors");
+  list.add(dbRef);
+  dbRef = FirebaseFirestore.instance.collection("platinumSponsors");
+  list.add(dbRef);
 
-  return StreamBuilder<QuerySnapshot>(
-      stream: dbRef.snapshots(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return _buildImage(snapshot.data);
-        }
+  for (int i = 0; i < list.length; i++) {
+    return StreamBuilder<QuerySnapshot>(
+        stream: dbRef.snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return _buildImage(snapshot.data);
+          }
 
-        return const LinearProgressIndicator();
-      });
+          return const LinearProgressIndicator();
+        });
+  }
 }
 
 Widget _buildImage(QuerySnapshot? snapshot) {
@@ -59,7 +72,7 @@ Widget _buildImage(QuerySnapshot? snapshot) {
                       type: MaterialType.transparency,
                       child: InkWell(
                         child: Ink.image(
-                          image: NetworkImage(doc!["photo"]),
+                          image: NetworkImage(doc!["logo"]),
                           padding: const EdgeInsets.all(0.0),
                         ),
                         onTap: () {},
@@ -75,7 +88,7 @@ Widget _buildImage(QuerySnapshot? snapshot) {
                   height: 25,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Colors.yellow,
+                    color: Colors.blue,
                   ),
                   child: Text(doc["name"]),
                 ),
@@ -89,9 +102,9 @@ Widget _buildImage(QuerySnapshot? snapshot) {
                   height: 25,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Colors.orange,
+                    color: Colors.purple,
                   ),
-                  child: Text(doc["job"]),
+                  child: Text(doc["type"]),
                 ),
               )
             ],

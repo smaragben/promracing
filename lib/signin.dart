@@ -5,17 +5,18 @@ import 'package:promracing/register.dart';
 import 'package:promracing/services/auth.dart';
 import 'package:promracing/wrapper.dart';
 import 'dart:developer';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignIn extends StatefulWidget {
-  const SignIn({ Key? key }) : super(key: key);
+   SignIn({ Key? key, required this.a }) : super(key: key);
   static const  String routeName= '/Signin' ;
+         AuthService a;
 
   @override
   _SignInState createState() => _SignInState();
 }
 
 class _SignInState extends State<SignIn> {
-  final AuthService _auth = AuthService();
   String email = '';
   String password = '';
     final _formKey = GlobalKey<FormState>();
@@ -23,9 +24,9 @@ class _SignInState extends State<SignIn> {
   bool loading = false;
   @override
   Widget build(BuildContext context) {
-    return loading ? Loading(50.0, Color.fromARGB(234, 71, 59, 59)) : Scaffold(
+    return loading ? Loading(50.0, Color.fromARGB(234, 79, 79, 83)) : Scaffold(
       resizeToAvoidBottomInset:false,
-                    backgroundColor:  Color.fromARGB(234, 71, 59, 59),
+                    backgroundColor:  Color.fromARGB(234, 79, 79, 83),
 
                     body: Column(
      
@@ -102,7 +103,7 @@ borderSide: BorderSide(color: Colors.red, width: 1.0)),
                               onPressed:  () async {
                                      if(_formKey.currentState!.validate()){
                                        loading = true;
-                                       dynamic result = await _auth.signin(email, password);
+                                       dynamic result = await  widget.a.signin(email, password);
                                        if(result == null){
                                          setState(() {
                                            error = "Λάθος email ή password";
@@ -112,7 +113,7 @@ borderSide: BorderSide(color: Colors.red, width: 1.0)),
                                        }
                                        else{
                                          log(result.uid);
-                                        Navigator.pushReplacement(context, PageRouteBuilder(pageBuilder: (context, animation1, animation2)=> MainPageWidget(), transitionDuration: Duration.zero, reverseTransitionDuration: Duration.zero));
+                                        Navigator.pushReplacement(context, PageRouteBuilder(pageBuilder: (context, animation1, animation2)=> MainPageWidget(a: widget.a), transitionDuration: Duration.zero, reverseTransitionDuration: Duration.zero));
 
                                        }
                                      }
@@ -130,13 +131,13 @@ borderSide: BorderSide(color: Colors.red, width: 1.0)),
                               child: Text("Είσοδος χωρίς λογαριασμό"), 
                               onPressed: () async {
                                 loading = true;
-                                      dynamic user = await _auth.signinanon();
+                                      dynamic user = await  widget.a.signinanon();
                                       if(user == null){
                                         print("error signing in");
                                         loading = false;
                                       }
                                       else{
-                                                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> MainPageWidget()));
+                                                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> MainPageWidget(a:  widget.a)));
                                         print("user signed in");
         }
                               },),),
@@ -146,7 +147,7 @@ borderSide: BorderSide(color: Colors.red, width: 1.0)),
                                 TextButton(
                                   child: Text(" Εγγραφείτε εδώ", style: const TextStyle(decoration: TextDecoration.underline, fontSize: 10, color: Colors.white,  )),
                                   onPressed: (){
-                                    Navigator.pushReplacement(context, PageRouteBuilder(pageBuilder: (context, animation1, animation2)=> Register(), transitionDuration: Duration.zero, reverseTransitionDuration: Duration.zero));
+                                    Navigator.pushReplacement(context, PageRouteBuilder(pageBuilder: (context, animation1, animation2)=> Register(a: widget.a), transitionDuration: Duration.zero, reverseTransitionDuration: Duration.zero));
 
                                   },),
                                   

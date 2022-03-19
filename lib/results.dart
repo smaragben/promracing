@@ -24,11 +24,9 @@ class _ResultState extends State<Result> {
 
     return
       Scaffold(
-                    backgroundColor: Colors.white,
-                    body: Column(
-     
-                        children: wrapper(context, res(), _auth, 5),
-                        )
+                    backgroundColor: Color.fromARGB(234, 79, 79, 83),
+                    body: res(),
+                        
                   ) ;
   }
   res()  {
@@ -53,24 +51,38 @@ class _ResultState extends State<Result> {
             message,
                         SizedBox(height: MediaQuery.of(context).size.height/20),
 
-     Text("Your score is: ", style: TextStyle(color: Colors.red,  fontWeight: FontWeight.w700, fontSize: 17.0),),
+     Text("Your score is: ", style: TextStyle(color: Colors.white,  fontWeight: FontWeight.w700, fontSize: 17.0),),
       
             SizedBox(height: MediaQuery.of(context).size.height/50),
 
-      Text(widget.points.toString()),
+      Text((widget.points*100).toString()+"%", style: TextStyle(color: Colors.white),),
                   SizedBox(height: MediaQuery.of(context).size.height/50),
 
-      Text("Your high score is: ", style: TextStyle(color: Colors.red,  fontWeight: FontWeight.w700, fontSize: 17.0),),
+      Text("Your high score is: ", style: TextStyle(color: Colors.white,  fontWeight: FontWeight.w700, fontSize: 17.0),),
             SizedBox(height: MediaQuery.of(context).size.height/50),
 
-   Text(widget.points.toString()),
+   Text((widget.points*100).toString()+"%",  style: TextStyle(color: Colors.white)),
                SizedBox(height: MediaQuery.of(context).size.height/50),
 
-                  Text("Best score is: ", style: TextStyle(color: Colors.red,  fontWeight: FontWeight.w700, fontSize: 17.0),),
+                  Text("Best score is: ", style: TextStyle(color: Colors.white,  fontWeight: FontWeight.w700, fontSize: 17.0),),
                               SizedBox(height: MediaQuery.of(context).size.height/50),
 
 
-      Text(widget.points.toString()),
+      Text((widget.points*100).toString()+"%",  style: TextStyle(color: Colors.white)),
+                                    SizedBox(height: MediaQuery.of(context).size.height/50),
+
+       ElevatedButton(
+                              
+                              style: ButtonStyle(minimumSize: MaterialStateProperty.all(Size(5*MediaQuery.of(context).size.width/10, 40.0)), backgroundColor: MaterialStateProperty.all(Colors.red), shape:  MaterialStateProperty.all<RoundedRectangleBorder>(
+
+                              RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0))),
+                              ),
+ 
+                              child: Text("Έξοδος"), 
+                              onPressed:  (){ Navigator.pushNamed(context, '/MainPage');}
+
+                              
+                              )
 
 
     ] ));
@@ -78,17 +90,17 @@ class _ResultState extends State<Result> {
 
 
       Widget bad() {
-        return Column(children:[Image.asset('assets/2.png', width:200 ,height:200 ), Text("Μπορείς και καλύτερα,", style: TextStyle(color: Colors.red,  fontWeight: FontWeight.w700, fontSize: 20.0),),
-        Text("προσπάθησε ξανά!", style: TextStyle(color: Colors.red,  fontWeight: FontWeight.w700, fontSize: 20.0)),]);
+        return Column(children:[Image.asset('assets/2.png', width: 3*MediaQuery.of(context).size.width/4 ,height:200 ), SizedBox(height: MediaQuery.of(context).size.height/50),Text("Μπορείς και καλύτερα,", style: TextStyle(color: Colors.white,  fontWeight: FontWeight.w700, fontSize: 20.0),),
+        Text("προσπάθησε ξανά!", style: TextStyle(color: Colors.white,  fontWeight: FontWeight.w700, fontSize: 20.0)),]);
       }
       Widget medium() {
-        return Text("Μπράβο!", style: TextStyle(color: Colors.black,  fontWeight: FontWeight.w700, fontSize: 20.0),);
+        return Text("Μπράβο!", style: TextStyle(color: Colors.white,  fontWeight: FontWeight.w700, fontSize: 20.0),);
       }
       Widget great() {
-        return Text("Τέλειο!", style: TextStyle(color: Colors.black,  fontWeight: FontWeight.w700, fontSize:20.0),);
-      }
+        return  Column(children:[Image.asset('assets/2.png', width: 3*MediaQuery.of(context).size.width/4 ,height:200 ), SizedBox(height: MediaQuery.of(context).size.height/50),
+        Text("Τέλειο!", style: TextStyle(color: Colors.white,  fontWeight: FontWeight.w700, fontSize: 20.0)),]);}
       Widget newhighscore() {
-        return Column(children: [Image.asset('assets/2.png', width:200 ,height:200 ), Text("Συγχαρητήρια έχεις το νέο high score!", style: TextStyle(color: Colors.green,  fontWeight: FontWeight.w700, fontSize: 20.0),)]);
+        return Column(children: [Image.asset('assets/2.png', width:3*MediaQuery.of(context).size.width/4 ,height:200 ), SizedBox(height: MediaQuery.of(context).size.height/50),Text("Συγχαρητήρια έχεις το νέο high score!", style: TextStyle(color: Colors.white,  fontWeight: FontWeight.w700, fontSize: 20.0),)]);
       }
   
 }

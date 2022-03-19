@@ -13,7 +13,10 @@ cards1(){
      stream : dbRef.snapshots(),
      builder: (context, snapshot) {
        if(snapshot.hasData){
-         return  _buildList(snapshot.data);
+         return Container(
+        alignment: Alignment.center,
+     
+      child: _buildList(snapshot.data));
        }
        
        return const LinearProgressIndicator();
@@ -29,7 +32,7 @@ cards1(){
 
 Widget _buildList(QuerySnapshot? snapshot) {
   return ListView.builder(
-    
+    padding: EdgeInsets.zero,
     itemCount: snapshot?.docs.length ?? 0,
     itemBuilder: (context, index){
       final doc = snapshot?.docs[index];
@@ -37,15 +40,15 @@ Widget _buildList(QuerySnapshot? snapshot) {
       final day = doc["date"].toDate().day.toString();
       final year = doc["date"].toDate().year.toString();
 
-      return SizedBox(
-        
+      return Container(
+        alignment: Alignment.center,
       height: 280,
-      width: 250,
+      width: MediaQuery.of(context).size.width,
       child: Stack(
+        alignment: Alignment.center,
                       children: <Widget>[
   
                         Positioned(
-                          left: 30,
                           top: 30,
                           child: Container(
                             height: 200,
@@ -84,14 +87,13 @@ Widget _buildList(QuerySnapshot? snapshot) {
                           ),
                            Positioned(
                           top: 205,
-                          left: 10,
                           child: Container(
                             
                             alignment: Alignment.center,
                             width: 330,
                             height: 60,
                             decoration: const BoxDecoration(
-                              color: Color.fromARGB(234, 71, 59, 59),
+                              color: Color.fromARGB(234, 79, 79, 83),
                                      borderRadius: BorderRadius.all(const Radius.circular(20)),
                              ),
                             child: Padding(

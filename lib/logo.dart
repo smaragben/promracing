@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:promracing/profile.dart';
+import 'package:promracing/signin.dart';
 
 
 logo(context, _auth) {
 
   return Container(
     decoration: BoxDecoration(  boxShadow:[BoxShadow(color: Colors.grey, spreadRadius: 5, blurRadius: 7)], borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40), bottomRight: Radius.circular(40) ),
-      color: Color.fromARGB(234, 71, 59, 59),
+      color: Color.fromARGB(234, 79, 79, 83),
 
 ),
   width: MediaQuery.of(context).size.width,
@@ -23,22 +25,24 @@ logo(context, _auth) {
             width: 135,
             height: 30,                                                            
             fit: BoxFit.fill),
+          
                
             
         ],
         ) 
         ,) ,
      const Spacer(),
-      Align(
-        alignment: Alignment.centerRight, 
-        child: Row(children: [
+     Column(
+       children:[
+       Row(children: [
           const Text('Profile', style: TextStyle(color: Colors.white),),
           const SizedBox(width: 10),
-          profilepic(context)
+          profilepic(context, _auth)
                 
-        ],) 
-      ),
-  
+        ],) ,
+    
+
+       ]),
       const SizedBox(width: 10),
 
 
@@ -49,14 +53,15 @@ logo(context, _auth) {
 
 
 
-profilepic(context){
+profilepic(context, _auth){
 
     
       return IconButton(
             iconSize: 50,
             padding: const EdgeInsets.all(0),
             highlightColor: Colors.transparent,
-            onPressed: (){ Navigator.pushNamed(context, '/Profile');},
+            onPressed: (){ Navigator.of(context).pushReplacement( MaterialPageRoute(builder: (context)=> Profile(a: _auth)));
+},
             splashColor: Colors.transparent,
             icon: Image.asset(
             'assets/profilepic.png', 

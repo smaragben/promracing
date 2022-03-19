@@ -23,7 +23,7 @@ class NewsDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-                    backgroundColor: Colors.white,
+                    backgroundColor: Color.fromARGB(255, 204, 204, 211),
                     body: Column(
                       
                       children: [

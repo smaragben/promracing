@@ -17,9 +17,9 @@ class _PhotosState extends State<PhotosWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 204, 204, 211),
         body: Column(
-          children: wrapper(context, images1(), _auth, 0),
+          children: wrapper(context, images1(), _auth, 5),
         ));
   }
 }
@@ -59,7 +59,7 @@ Widget _buildImage(QuerySnapshot? snapshot) {
                       type: MaterialType.transparency,
                       child: InkWell(
                         child: Ink.image(
-                          image: NetworkImage(doc!["image1"]),
+                          image: NetworkImage(doc!["image"]),
                           padding: const EdgeInsets.all(0.0),
                         ),
                         onTap: () {},

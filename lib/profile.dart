@@ -4,25 +4,30 @@ import 'package:promracing/services/auth.dart';
 import 'package:promracing/signin.dart';
 import 'package:promracing/theme.dart';
 import 'package:promracing/cardlist.dart';
+import 'package:promracing/user.dart';
 
 import 'package:promracing/wrapper.dart';
-
+import 'package:provider/provider.dart';
+import 'dart:developer';
 
 
 
 
 class Profile extends StatelessWidget {
-   Profile({Key? key}) : super(key: key);
- final AuthService _auth = AuthService();
+   Profile({Key? key, required this.a}) : super(key: key);
+  AuthService a ;
   static const  String routeName= '/Profile' ;
 
   @override
   Widget build(BuildContext context) {
-
+    final user = Provider.of<appUser?>(context);
+    if(user == null){
+      log("null");
+    }
     return
       Scaffold(
                    resizeToAvoidBottomInset:false,
-                    backgroundColor:  Color.fromARGB(234, 71, 59, 59),
+                    backgroundColor:  Color.fromARGB(234, 79, 79, 83),
 
                     body: Center(child: Column(
      
@@ -42,7 +47,7 @@ class Profile extends StatelessWidget {
             fit: BoxFit.fill),),
                                            SizedBox(height: MediaQuery.of(context).size.height/200),
 
-    Text('Profile', style: TextStyle(color: Colors.white),),
+    Text( "anonymous", style: TextStyle(color: Colors.white),),
                                                SizedBox(height: MediaQuery.of(context).size.height/200),
 
                                 ElevatedButton(
@@ -71,8 +76,8 @@ class Profile extends StatelessWidget {
  
                       child: Text("Έξοδος"), 
                       onPressed: () async{
-                        await _auth.signOut();
-                      Navigator.of(context).pushReplacement( MaterialPageRoute(builder: (context)=> SignIn()));
+                        await a.signut();
+                      Navigator.of(context).pushReplacement( MaterialPageRoute(builder: (context)=> SignIn(a: a)));
                       },)
                     ]),
                     ),
