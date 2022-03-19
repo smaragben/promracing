@@ -11,8 +11,13 @@ import 'package:promracing/Quizzes.dart';
 import 'package:promracing/services/auth.dart';
 import 'package:promracing/wrapper.dart';
 import 'package:promracing/user.dart';
+<<<<<<< HEAD
 import 'package:promracing/prom.dart';
 import 'package:promracing/sponsors.dart';
+=======
+import 'package:promracing/sponsors.dart';
+import 'package:promracing/prom.dart';
+>>>>>>> e38c2c85c3d325e97c7e32b47b8f7126700ac06b
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,10 +38,17 @@ class MyApp extends StatelessWidget {
       SignIn.routeName: (BuildContext context) => const SignIn(),
       Wrapper.routeName: (BuildContext context) => Wrapper(),
       Result.routeName: (BuildContext context) => const Result(),
+<<<<<<< HEAD
       Photos.routeName: (BuildContext context) => const Photos(),
       Register.routeName: (BuildContext context) => const Register(),
       PromMembers.routeName: (BuildContext context) => const PromMembers(),
       Sponsors.routeName: (BuildContext context) => const Sponsors()
+=======
+      PhotosWidget.routeName: (BuildContext context) => const PhotosWidget(),
+      Register.routeName: (BuildContext context) => const Register(),
+      Sponsors.routeName: (BuildContext context) => const Sponsors(),
+      PromMembers.routeName: (BuildContext context) => const PromMembers()
+>>>>>>> e38c2c85c3d325e97c7e32b47b8f7126700ac06b
     };
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Roboto'),

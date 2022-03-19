@@ -28,10 +28,17 @@ members() {
   List<CollectionReference> list = [];
   var dbRef = FirebaseFirestore.instance.collection("promMembers");
   list.add(dbRef);
+<<<<<<< HEAD
   dbRef = FirebaseFirestore.instance.collection("promMembersAerodynamics");
   list.add(dbRef);
   dbRef = FirebaseFirestore.instance.collection("promMembersElectronics");
   list.add(dbRef);
+=======
+  dbRef = FirebaseFirestore.instance.collection("promMembersElectronics");
+  list.add(dbRef);
+  dbRef = FirebaseFirestore.instance.collection("promMembersAerodynamics");
+  list.add(dbRef);
+>>>>>>> e38c2c85c3d325e97c7e32b47b8f7126700ac06b
   dbRef = FirebaseFirestore.instance.collection("promMembersLogistics");
   list.add(dbRef);
   dbRef = FirebaseFirestore.instance
@@ -42,6 +49,7 @@ members() {
   list.add(dbRef);
   dbRef = FirebaseFirestore.instance.collection("promMembersVehicleDynamics");
   list.add(dbRef);
+<<<<<<< HEAD
 
   for (var i = 0; i < list.length; i++) {
     return StreamBuilder<QuerySnapshot>(
@@ -51,6 +59,16 @@ members() {
             return _buildImage(snapshot.data);
           }
 
+=======
+  for (var i = 0; i < list.length; i++) {
+    return StreamBuilder<QuerySnapshot>(
+        stream: dbRef.snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return _buildImage(snapshot.data);
+          }
+
+>>>>>>> e38c2c85c3d325e97c7e32b47b8f7126700ac06b
           return const LinearProgressIndicator();
         });
   }
